@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
+import com.ashish.dogimagegeneratorwithlrucache.ui.components.DogImage
 import com.ashish.dogimagegeneratorwithlrucache.ui.components.OutlinedBlueButton
 import java.net.URL
 import kotlin.concurrent.thread
@@ -36,26 +37,5 @@ fun GenerateDogsScreen(viewModel: GenerateDogsViewModel) {
     }
 }
 
-@Composable
-fun DogImage(url: String) {
-    var bitmap by remember { mutableStateOf<Bitmap?>(null) }
 
-    LaunchedEffect(url) {
-        thread {
-            try {
-                val inputStream = URL(url).openStream()
-                bitmap = BitmapFactory.decodeStream(inputStream)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
 
-    bitmap?.let {
-        Image(
-                bitmap = it.asImageBitmap(),
-                contentDescription = "Random Dog",
-                modifier = Modifier.fillMaxWidth().height(300.dp)
-        )
-    }
-}

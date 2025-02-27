@@ -8,9 +8,10 @@ import com.ashish.dogimagegeneratorwithlrucache.ui.screens.GenerateDogsScreen
 import com.ashish.dogimagegeneratorwithlrucache.ui.screens.GenerateDogsViewModel
 import com.ashish.dogimagegeneratorwithlrucache.ui.screens.HomeScreen
 import com.ashish.dogimagegeneratorwithlrucache.ui.screens.MyDogsScreen
+import com.ashish.dogimagegeneratorwithlrucache.ui.screens.MyDogsViewModel
 
 @Composable
-fun AppNavHost(viewModel: GenerateDogsViewModel) {
+fun AppNavHost(generateViewModel: GenerateDogsViewModel, myDogViewModel: MyDogsViewModel) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Routes.Home.route) {
@@ -18,10 +19,10 @@ fun AppNavHost(viewModel: GenerateDogsViewModel) {
             HomeScreen(navController)
         }
         composable(Routes.GenerateDogs.route) {
-            GenerateDogsScreen(viewModel)
+            GenerateDogsScreen(generateViewModel)
         }
         composable(Routes.MyDogs.route) {
-            MyDogsScreen(navController)
+            MyDogsScreen(myDogViewModel)
         }
     }
 }
