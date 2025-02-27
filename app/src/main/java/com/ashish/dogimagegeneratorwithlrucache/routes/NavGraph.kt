@@ -5,11 +5,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ashish.dogimagegeneratorwithlrucache.ui.screens.GenerateDogsScreen
+import com.ashish.dogimagegeneratorwithlrucache.ui.screens.GenerateDogsViewModel
 import com.ashish.dogimagegeneratorwithlrucache.ui.screens.HomeScreen
 import com.ashish.dogimagegeneratorwithlrucache.ui.screens.MyDogsScreen
 
 @Composable
-fun AppNavHost() {
+fun AppNavHost(viewModel: GenerateDogsViewModel) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Routes.Home.route) {
@@ -17,7 +18,7 @@ fun AppNavHost() {
             HomeScreen(navController)
         }
         composable(Routes.GenerateDogs.route) {
-            GenerateDogsScreen(navController)
+            GenerateDogsScreen(viewModel)
         }
         composable(Routes.MyDogs.route) {
             MyDogsScreen(navController)

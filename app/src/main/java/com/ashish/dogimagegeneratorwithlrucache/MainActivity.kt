@@ -3,22 +3,23 @@ package com.ashish.dogimagegeneratorwithlrucache
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.ashish.dogimagegeneratorwithlrucache.repository.DogApiService
+import com.ashish.dogimagegeneratorwithlrucache.repository.DogRepository
+import com.ashish.dogimagegeneratorwithlrucache.repository.RetrofitInstance
 import com.ashish.dogimagegeneratorwithlrucache.routes.AppNavHost
-import com.ashish.dogimagegeneratorwithlrucache.ui.theme.DogImageGeneratorWithLRUCacheTheme
+import com.ashish.dogimagegeneratorwithlrucache.ui.screens.GenerateDogsViewModel
+import com.ashish.dogimagegeneratorwithlrucache.utils.Constants.DOG_CEO_URL
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppNavHost()
+            val repository = DogRepository(RetrofitInstance.apiService)
+            val viewModel = GenerateDogsViewModel(repository)
+
+            AppNavHost(viewModel) // Pass ViewModel to navigation
         }
     }
 }

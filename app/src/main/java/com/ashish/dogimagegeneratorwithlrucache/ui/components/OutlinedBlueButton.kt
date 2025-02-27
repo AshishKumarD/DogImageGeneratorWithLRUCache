@@ -12,17 +12,15 @@ import com.ashish.dogimagegeneratorwithlrucache.ui.theme.BlueButtonColor
 
 @Composable
 fun OutlinedBlueButton(
-    text: String,
-    onClick: () -> Unit,
-    color: Color = BlueButtonColor,
-    modifier: Modifier = Modifier
+        text: String,
+        onClick: () -> Unit,
+        color: Color = BlueButtonColor,
+        modifier: Modifier = Modifier
 ) {
     Button(
-        onClick = onClick,
-        colors = ButtonDefaults.buttonColors(containerColor = color),
-        border = BorderStroke(1.dp, Color.Black), // Black outline
-        modifier = modifier
-    ) {
-        Text(text, color = Color.White)
-    }
+            onClick = onClick,
+            colors = ButtonDefaults.buttonColors(containerColor = color),
+            border = BorderStroke(1.dp, Color.Black),
+            modifier = modifier
+    ) { Text(text, color = Color.White) }
 }
